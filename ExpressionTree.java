@@ -125,28 +125,27 @@ public class ExpressionTree {
     res += prefixH(start.getRight()) ;
     return res ;
   }
-
+  private double apply(char op, double a, double b) {
+    if (op == '+') return a + b ;
+    if (op == '/') return a / b ;
+    if (op == '*') return a * b ;
+    if (op == '-') return a - b ;
+    return 0.0 ;
+  }
   /*return the value of the specified expression tree*/
   public double evaluate() {
     /*you are to write this method*/
-    return perform(getOp(), evalH(getLeft()), evalH(getRight())) ;
+    return apply(getOp(), evalH(getLeft()), evalH(getRight())) ;
   }
   public double evalH(ExpressionTree start) {
     if (start.isValue()) return start.getValue() ;
     else {
       // now we have to do the operation
       double r = 0.0 ;
-      r = perform(start.getOp(), evalH(start.getLeft()), evalH(start.getRight())) ;
+      r = apply(start.getOp(), evalH(start.getLeft()), evalH(start.getRight())) ;
       return r ;
     }
   }
-
-  /*use the correct operator on both a and b, and return that value*/
-  private double apply(char op, double a, double b) {
-    /*you are to write this method*/
-
-    return 0.0;
-    }
 
 
 }
